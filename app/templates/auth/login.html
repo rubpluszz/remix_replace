@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<div align="center" class="container-fluid">
+    
+        <div class="row">
+            
+            <div class="col-md-6" >
+                {{ wtf.quick_form(form) }}
+            </div>
+            <div class="col-md-auto fs-4">
+                <h4><b>Ласкаво просимо!</b></h4>
+                 Ласкаво просимо вас на україномовний форум з програмування,<br>
+                 веб-дизайну, SEO та всього пов'язаного з інтернетом та<br>
+                 комп'ютерами. Будемо вдячні, якщо ви поділитись посиланням на<br> 
+                 <a href="replace.org.ua ">Replace.org.ua</a> на інших ресурсах</div>
+        </div>
+       
+        <br><br>
+        <p>
+        	<b>Можливо вам потрібно</b>
+            <a href="{{ url_for('auth.accept_order') }}">Зареєструйтеся</a><b> або одержати ? </b><a href="{{ url_for('auth.reset_password_request') }}"> новий пароль</a> перед входом на форум?
+        </p>
+ </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<div class="container">
+    <div class="row">
+        <div class=col-8>
+            <div class="row">
+	<h1>{{ 'Реєстрація' }}</h1>
+	<hr>
+	<p><b>Ви маєте погодитися з правилами форуму перед реєстрацією</b></p>
+	<hr>
+	
+	</div>
+    </div>
+	</div>
+	<hr>
+	{% include 'auth/_rules_content.html' %}
+	<div align="center">
+		<div class="col">
+			{{ wtf.quick_form(form)}}
+		</div>
+	</div>
+
+{% endblock %}

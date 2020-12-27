@@ -1,0 +1,94 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+	{% if title %}
+    	{{ title }} - REPLACE
+	{% else %}
+		KinoManiak
+	{% endif %}
+{% endblock %}
+
+
+{% block navbar %}
+   <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand navbar-brand-img" href="{{ url_for('main.index') }}"><img style="width: 50px" src="{{ url_for('static', filename='hedgehog.png') }}"></a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}"><h4>REPLACE </h4><h5>Український форум програмістів</h5></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('main.index') }}">{{ 'Форум' }}</a></li>
+                    <li><a href="{{ url_for('main.explore') }}">{{ 'Користувачі' }}</a></li>
+                    <li><a href="{{ url_for('main.explore') }}">{{ 'Статті' }}</a></li>
+                    <li><a href="{{ url_for('main.explore') }}">{{ 'Правила' }}</a></li>
+                </ul>
+                {% if g.search_form %}
+                    <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+                        <div class="form-group">
+                            {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+                        </div>
+                    </form>
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_anonymous %}
+                    <li><a href="{{ url_for('auth.login') }}">Вхід</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('main.user', username=current_user.username) }}">Профіль</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Вихід'</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    
+    {% if current_user.is_anonymous and title not in ['Вхід', 'Реєстрація', 'Запит на ресетування паролю', 'Ресетування паролю'] %}
+    <div  class="container-fluid">
+    
+        <div class="text-center">
+        <b>Ласкаво просимо!</b><br>
+
+        Ласкаво просимо вас на україномовний форум з програмування, веб-дизайну, SEO та всього пов'язаного з інтернетом та комп'ютерами.
+
+        Будемо вдячні, якщо ви поділитись посиланням на <a href="replace.org.ua ">Replace.org.ua</a> на інших ресурсах.
+
+        Для того щоб створювати теми та надсилати повідомлення вам потрібно Зареєструватись.
+        </div>
+    <hr>
+    {% endif %}
+	<div class="conteiner">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        	{% for message in messages %}
+        		<div class="alert alert-info" role="alert">{{ message }}</div>
+        	{% endfor %}
+        {% endif %} 
+        {% endwith %}
+		{% block app_content %}{% endblock %}
+	</div>
+
+    <div class="fixed-sm-bottom text-light ">
+        <br>
+        <p align="center" style="color: grey">Контакти для співпраці: <a href="mailto:sahand6@gmail.com">shanand6@gmail.com</a></p>
+        <p align="center" style="color: grey">© 2012–2020 Український форум програмістів. Всі права захищені</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
+{% endblock %}
