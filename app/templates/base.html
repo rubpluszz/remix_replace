@@ -12,7 +12,7 @@
 
 {% block navbar %}
 
-    <nav align="center" class="navbar navbar-default navbar-static-top"  data-spy="affix" style="top:0;left:0; right:0; width:100%;" data-offset-top="100" >
+    <nav class="navbar navbar-default navbar-static-top"  data-spy="affix" style="top:0;left:0; right:0; width:100%;" data-offset-top="100">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -55,7 +55,14 @@
 
 
 {% block content %}
-    <div class="go-down" title="Вниз" id='OnBottom'>⇩</div>
+    <div id="ToTop"></div><!--Маркер для  кнопок прокрутки-->
+    <div class="my_buttons" id="my_buttons" style="opacity:0.5; position: fixed;z-index:2147483647;top:100px;left:0;">
+        <!--Кнопки прокрутки-->
+        <a href="#ToTop"  class="badge bg-primary text-wrap"  title="Вверх" id='to-top'><h4>⇧</h4></a>
+        <a href="#OnBottom"   class="badge bg-primary text-wrap"  title="Вниз" id='on-bottom'><h4>⇩</h4></a>
+    </div>
+
+    
         
     {% if current_user.is_anonymous and title not in ['Вхід', 'Реєстрація', 'Запит на ресетування паролю', 'Ресетування паролю'] %}
     <div  class="container-fluid">
@@ -80,8 +87,8 @@
         {% endif %} 
         {% endwith %}
 		{% block app_content %}{% endblock %}
-    </div>
-    <div class="go-down" title="Вниз" id='OnBottom'>⇩</div>
+
+    <div id="OnBottom"></div><!--Маркер для  кнопок прокрутки-->
     
     <div class="fixed-sm-bottom text-light ">
         <br>
