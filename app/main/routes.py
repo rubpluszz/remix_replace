@@ -17,7 +17,6 @@ def user_popup(username):
     return render_template('user_popup.html', user=user)
 
 @bp.route('/search')
-@login_required
 def search():
     if not g.search_form.validate():
         return redirect(url_for('main.explore'))
@@ -38,15 +37,6 @@ def before_request():
         db.session.commit()
         g.search_form = SearchForm()
     g.locale = str(get_locale())
-
-
-@bp.route('/translate',methods=['POST'])
-@login_required
-def translate_text():
-    return jsonify({'text':translate(request.form['text'],
-                                     request.form['source_language'],
-                                     request.form['dest_language'])})
-
 
 @bp.route('/explore')
 def explore():

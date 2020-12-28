@@ -41,10 +41,10 @@
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
-                    <li><a href="{{ url_for('auth.login') }}">Вхід</a></li>
+                    <li><a href="{{ url_for('login.login') }}">Вхід</a></li>
                     {% else %}
                     <li><a href="{{ url_for('main.user', username=current_user.username) }}">Профіль</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Вихід</a></li>
+                    <li><a href="{{ url_for('login.logout') }}">Вихід</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -57,7 +57,7 @@
 
             Ласкаво просимо вас на україномовний форум з програмування, веб-дизайну, SEO та всього пов'язаного з інтернетом та комп'ютерами.
             Будемо вдячні, якщо ви поділитись посиланням на <a href="replace.org.ua ">Replace.org.ua</a> на інших ресурсах.
-            Для того щоб створювати теми та надсилати повідомлення вам потрібно <li><a href="{{ url_for('auth.login') }}">Ввійти</a> або <a href="{{ url_for('auth.accept_order') }}">Зареєструйтеся</a>.
+            Для того щоб створювати теми та надсилати повідомлення вам потрібно <li><a href="{{ url_for('login.login') }}">Ввійти</a> або <a href="{{ url_for('register.accept_order') }}">Зареєструйтеся</a>.
         {% endif %}
         </div>
     </nav>

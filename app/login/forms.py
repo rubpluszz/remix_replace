@@ -24,15 +24,16 @@ class AcceptOrderForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
 
-    """Когда вы добавляете какие-либо методы, соответствующие 
-    шаблону validate_<имя_поля>, WTForms принимает их 
-    как пользовательские валидаторы и вызывает их в дополнение к 
-    стандартным валидаторам."""
+    """Коли  ви додаєте які-небудь методи, котрі відповідають 
+    шаблону validate_<им'я_поля>, WTForms приймає їх 
+    як користувацькі валідатори s викликає їх в доповнення до 
+    стандартних валідаторів."""
 
-    username = StringField(_l('Username'), validators = [DataRequired()])
-    email = StringField(_l('Email'), validators = [DataRequired(), Email()])#Для поля электронной почты email я добавил второй валидатор после DataRequired, называемый Email. Это еще один валидатор (в оригинале «stock validator», т.е. правильнее это перевести как встроенный, стандартный), который поставляется с WTForms, который гарантирует, что то, что пользователь вводит в этом поле, соответствует структуре адреса электронной почты.
-    password = PasswordField(_l('Password'), validators = [DataRequired()])
-    password2 = PasswordField(_l('Repeat Password'), validators = [DataRequired(), EqualTo('password')])
+    username = StringField('Ім`я користувача', validators = [DataRequired()])
+    email = StringField('E-mail', validators = [DataRequired(), Email()])#Для поля электронной почты email я добавил второй валидатор после DataRequired, называемый Email. Это еще один валидатор (в оригинале «stock validator», т.е. правильнее это перевести как встроенный, стандартный), который поставляется с WTForms, который гарантирует, что то, что пользователь вводит в этом поле, соответствует структуре адреса электронной почты.
+    password = PasswordField('Пароль', validators = [DataRequired()])
+    password2 = PasswordField('Повторіть парль', validators = [DataRequired(), EqualTo('password')])
+    #protection = StringField()
     submit = SubmitField(_l('Register'))
 
 

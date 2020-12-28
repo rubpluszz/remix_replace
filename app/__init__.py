@@ -17,7 +17,7 @@ from elasticsearch import Elasticsearch
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
-login.login_view = 'auth.login'
+login.login_view = 'login.login'
 login.login_message = _l('Please log in to access this page.')
 mail = Mail()
 bootstrap = Bootstrap()
@@ -42,8 +42,11 @@ def create_app(config_class=Config):
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp) 
 
-    from app.auth import bp as auth_bp
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    from app.login import bp as login_bp
+    app.register_blueprint(login_bp, url_prefix='/login')
+
+    from app.register import bp as register_bp
+    app.register_blueprint(register_bp, url_prefix='/register')
 
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
@@ -72,10 +75,5 @@ def create_app(config_class=Config):
         app.logger.info('KinoManiak startup')
     
     return(app)
-
-@babel.localeselector
-def get_locale():
-    """Выбор предпочтительного языка."""
-    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
 from app import models
