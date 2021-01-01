@@ -36,16 +36,16 @@ ________________________________________________________________________________
 За замовченням такого файлу немає в кореневій дерикторії тому його треба створити 
 самостійно. Файл повинен виглядати наступним чином:
 
-"""
->    SECRET_KEY = "xxxxx"
->    FLASK_APP = "xxxxxx"
->    MAIL_SERVER = "xxxxxx"
->    MAIL_PORT = xx
->    MAIL_USE_TLS = x
->    MAIL_USERNAME = "xxxxxx"
->    MAIL_PASSWORD = "xxxxxx"
->    FLASK_DEBUG = "xxxxxx"
-"""
+`"""
+    SECRET_KEY = "xxxxx"
+    FLASK_APP = "xxxxxx"
+    MAIL_SERVER = "xxxxxx"
+    MAIL_PORT = xx
+    MAIL_USE_TLS = x
+    MAIL_USERNAME = "xxxxxx"
+    MAIL_PASSWORD = "xxxxxx"
+   FLASK_DEBUG = "xxxxxx"
+"""`
 Після `=` повинні бути відповідні значення.
 ___________________________________________________________________________________________
 ##Захарджування параметрів
