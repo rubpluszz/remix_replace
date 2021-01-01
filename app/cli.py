@@ -16,7 +16,7 @@ def register(app):
             raise RuntimeError('extract command failed')
         if os.system('pybabel init -i messages.pot -d app/translations -l ' + lang):
             raise RuntimeError('init command failed')
-     os.remove('messages.pot')
+        os.remove('messages.pot')
 
     @translate.command()
     def update():
