@@ -13,7 +13,6 @@ from app.login.email import send_password_reset_email
 
 @bp.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
-    """Відображення сторінки впровадження нового пароля"""
 
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))

@@ -47,14 +47,30 @@ class User(UserMixin, db.Model):
                           current_app.config['SECRET_KEY'], algorithm='HS256'
                           ).decode('utf-8')
 
+    def get_set_password_token(self, expires_in=600):
+        """This function generate token to reset password"""
+        return jwt.encode(
+                          {'set_password':self.id, 'exp':time() + expires_in},
+                          current_app.config['SECRET_KEY'], algorithm='HS256'
+                          ).decode('utf-8')
+
 
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token, curent_app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
+            id = jwt.decode(token, curent_app.config['SECRET_KEY'], algorithms=['HS256'])['set_password']
         except:
             return
         return User.query.get(id)
+
+
+    @staticmethod
+    def verify_set_password_token(token):
+        try:
+            id = jwt.decode(token, curent_app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)    
         
         
     def __repr__(self):

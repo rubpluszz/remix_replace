@@ -37,5 +37,14 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Будьласка використайте відповідну адресу електронної почти')
 
     def validate_protection(self, protection):
-        if protection!='Київ':
+        if protection.data.lower()!='київ' :
             raise ValidationError('Ви неправильно відповіли на контрольне питання')
+
+
+class SetPasswordForm(FlaskForm):
+
+    """Form to reset user password"""
+
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    password2 = PasswordField('Повторити пароль', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Встановити пароль')
